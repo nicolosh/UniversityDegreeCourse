@@ -1,6 +1,6 @@
 #include <iostream>
-#include <university/student.h>
-#include <university/teacher.h>
+#include <university/display.h>
+#include <university/room.h>
 #include <university/course.h>
 
 int main() {

@@ -12,4 +12,6 @@ add_executable(tpa2020_UniversityDegreeCourse main.cpp
         src/course.cpp
         src/room.cpp
         src/lesson.cpp
-        src/display.cpp)
+        src/display.cpp
+        src/data.cpp
+        src/time.cpp)

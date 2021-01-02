@@ -14,12 +14,12 @@
 namespace university {
     class Course {
     protected:
-        std::vector<const Student *> students_;
-        std::vector<const Teacher *> teachers_; // di solito ci sono eventuali assistenti collaboratori col prof principale
-        std::vector<const Lesson *> lessons_;
-        std::string yearOfTheCurrentCourse_;
+        std::vector<const university::Student *> students_;
+        std::vector<const university::Teacher *> teachers_; // di solito ci sono eventuali assistenti collaboratori col prof principale
+        std::vector<const university::Lesson *> lessons_;
+        int yearOfTheCurrentCourse_;
     public:
-        Course(const std::string &year) : yearOfTheCurrentCourse_(year) {}
+        Course(int year) : yearOfTheCurrentCourse_(year) {}
 
         int getNumbersOfStudentOfThisCourse() const { return students_.size(); }
 
@@ -35,20 +35,25 @@ namespace university {
 
         void getTeachersOfThisCourse() const;
 
-        void getRoomAssociatedTotheCourse() const;
+        void getRoomsAssociatedToTheCourse() const;
 
-        const std::string &getScolasticYear() const { return yearOfTheCurrentCourse_; }
+        int getScolasticYear() const { return yearOfTheCurrentCourse_; }
 
-        void addStudentToThisCourse(const Student &student);
+        void addStudentToThisCourse(const university::Student &student);
 
-        void addTeachersToThisCourse(const std::vector<Teacher> &teacher);
+        void addTeachersToThisCourse(const std::vector<university::Teacher> &teachers);
 
-        void addLessonToThisCourse(const Lesson &lesson);
+        bool addLessonToThisCourse(const university::Lesson &lesson);
 
-        bool isThisRoomEnoughCapable() const;
+        void printInfoStudent() const;
 
+        const std::vector<const Lesson *> &getBiggerListOfLessonBetweenTwoListOfLessonOfTheCourse(const std::vector<const Lesson *> &Lesson) const {
+            return ((this->getListOfLessonOfThisCourse().size() > Lesson.size()) ? this->getListOfLessonOfThisCourse() : Lesson);
+        }
 
-        //PRINT() ???
+        const std::vector<const Lesson *> &getSmallerListOfLessonBetweenTwoListOfLessonOfTheCourse(const std::vector<const Lesson *> &Lesson) const {
+            return ((this->getListOfLessonOfThisCourse().size() < Lesson.size()) ? this->getListOfLessonOfThisCourse() : Lesson);
+        }
     };
 }
 

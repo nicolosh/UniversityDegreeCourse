@@ -15,7 +15,7 @@ namespace university {
     public:
         Room(const std::string &ID, const int N) : ID_(ID), numberOfplaces_(N) {}
 
-        const int getPlacesOfTheRoom() const { return numberOfplaces_; }
+        const int &getPlacesOfTheRoom() const { return numberOfplaces_; }
 
         const std::string &getRoomID() const { return ID_; }
 

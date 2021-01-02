@@ -7,17 +7,20 @@
 void university::Course::getTeachersOfThisCourse() const {
     for (int i = 0; i < teachers_.size(); ++i) {
         std::cout << "Teacher " << i << "(general info): " << std::endl;
-        std::cout << "Name: " << teachers_[i]->getName()/*.toString*/ << ", Surname: " << teachers_[i]->getSurname()
+        std::cout << "Name: " << teachers_[i]->getName() << ", Surname: " << teachers_[i]->getSurname()
                   << ", Freshman: " << teachers_[i]->getFreshMan();
         std::cout << std::endl;
     }
 }
 
-void university::Course::getRoomAssociatedTotheCourse() const {
+void university::Course::getRoomsAssociatedToTheCourse() const {
     for (int i = 0; i < lessons_.size(); ++i) {
         std::cout << "Room " << i << " (general info): " << std::endl;
-        std::cout << "ID: " << lessons_[i]->getRoomOfThisLesson().getRoomID()/*.toString*/ <<
-                  ", numbersOFPlaces: " << lessons_[i]->getRoomOfThisLesson().getPlacesOfTheRoom();
+        std::cout << "Data Lesson: " + lessons_[i]->getDataOfThisLesson().formatoBreve() + ", " +
+        lessons_[i]->getInitialTime().formatoBreve() + "-" +
+        (lessons_[i]->getInitialTime() + lessons_[i]->getTimeOfThisLesson()).formatoBreve()
+        +  ", room ID: " + lessons_[i]->getRoomOfThisLesson().getRoomID() +
+                  ", numbersOfPlaces: " + std::to_string(lessons_[i]->getRoomOfThisLesson().getPlacesOfTheRoom());
         std::cout << std::endl;
     }
 }
@@ -26,26 +29,26 @@ void university::Course::addStudentToThisCourse(const university::Student &stude
     students_.push_back(&student);
 }
 
-void university::Course::addTeachersToThisCourse(const std::vector<Teacher> &teacher) {
-    for (int j = 0; j < teacher.size(); ++j) {
-        teachers_.push_back(&teacher[j]);
+void university::Course::addTeachersToThisCourse(const std::vector<university::Teacher> &teachers) {
+    for (int j = 0; j < teachers.size(); ++j) {
+        teachers_.push_back(&teachers[j]);
     }
 }
 
-void university::Course::addLessonToThisCourse(const university::Lesson &lesson) {
-    if (lesson.getRoomOfThisLesson().getPlacesOfTheRoom() >= getNumbersOfStudentOfThisCourse()) {
+bool university::Course::addLessonToThisCourse(const university::Lesson &lesson) {
+    if (lesson.getRoomOfThisLesson().getPlacesOfTheRoom() >= getNumbersOfStudentOfThisCourse() &&
+            (lesson.getInitialTime() >= lessons_[lessons_.size() - 1]->getInitialTime() + lessons_[lessons_.size() - 1]->getTimeOfThisLesson())) {
         lessons_.push_back(&lesson);
-        return;
+        return true;
     }
-
-    std::cout << "Lesson associated to its room NOT enough capable " << std::endl;
+    return false;
 }
 
-bool university::Course::isThisRoomEnoughCapable() const {
-    bool flag = true;
-    for (int i = 0; i < lessons_.size(); ++i) {
-        if (lessons_[i]->getRoomOfThisLesson().getPlacesOfTheRoom() >= getNumbersOfStudentOfThisCourse())
-            flag = true;
+void university::Course::printInfoStudent() const {
+    for (int i = 0; i < students_.size(); ++i) {
+        std::cout << "Student " << i << " (general info): ";
+        std::cout << "Name: " << students_[i]->getName() << ", Surname: " << students_[i]->getSurname()
+                  << ", Freshman: " << students_[i]->getFreshMan();
+        std::cout << std::endl;
     }
-    return flag;
 }

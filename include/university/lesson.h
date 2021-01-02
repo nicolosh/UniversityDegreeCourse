@@ -7,25 +7,28 @@
 
 
 #include <university/room.h>
-#include <university/course.h>
+#include <university/data.h>
+#include <university/time.h>
 
 namespace university {
     class Lesson {
     protected:
-        Course course_;
         Room room_;
-        int duration_;
-        //Data data_;
-        //Time initialTime_;
+        Time duration_, initialTime_;
+        Data data_;
 
     public:
-        Lesson(const Course &course, const Room &room, int time) : course_(course), room_(room), duration_(time) {}
-
-        const Course &getCourseOfThisLesson() const { return course_; }
+        Lesson(const Room &room, const Time& time, const Data &data, const Time &initialTime) : room_(room), duration_(time),
+                                                                                        data_(data),
+                                                                                        initialTime_(initialTime) {};
 
         const Room &getRoomOfThisLesson() const { return room_; }
 
-        int getTimeOfThisLesson() const { return duration_; }
+        Data getDataOfThisLesson() const { return data_; }
+
+        Time getInitialTime() const { return initialTime_; }
+
+        Time getTimeOfThisLesson() const { return duration_; }
     };
 }
 

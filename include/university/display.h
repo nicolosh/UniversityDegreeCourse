@@ -6,6 +6,8 @@
 #define TPA2020_UNIVERSITYDEGREECOURSE_DISPLAY_H
 
 #include <university/course.h>
+#include <university/data.h>
+#include <university/time.h>
 
 namespace university {
     class Display {
@@ -14,9 +16,13 @@ namespace university {
     public:
         Display() {}
 
+        int getCourseSupplied() const { return courses_.size(); }
+
         void addCourse(const Course &course);
 
         void displayEverything() const;
+
+        void timeOverlap() const;
 
         void getCoursesTeachedByTeachers(const std::vector<const Teacher *> &teachers) const;
 
