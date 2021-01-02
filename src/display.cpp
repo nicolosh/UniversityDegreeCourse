@@ -28,7 +28,7 @@ void university::Display::getCoursesTeachedByTeachers(const std::vector<const Te
         std::cout << "Cannot find course teached by your teachers ... " << std::endl;
 }
 
-//ipotizzo che si parla di una triennale e quindi ogni professore o lista di professori insegnano 1 corso
+//ipotizzo che si parli di una triennale e quindi ogni professore o lista di professori insegnano 1 corso
 // se così non fosse tolgo !found nel primo ciclo
 
 void university::Display::getCoursesTeachedInRoom(const Room &room) const {
