@@ -10,16 +10,18 @@
 namespace university {
     class Person {
     protected:
-        std::string name_, surname_,freshman_;
+        std::string name_, surname_, freshman_;
     public:
-        Person(const std::string &name, const std::string &surname,const std::string &freshman) : name_(name),
-        surname_(surname), freshman_(freshman) {}
+        Person(const std::string &name, const std::string &surname, const std::string &freshman) : name_(name),
+                                                                                                   surname_(surname),
+                                                                                                   freshman_(
+                                                                                                           freshman) {}
 
         const std::string &getName() const { return name_; }
 
         const std::string &getSurname() const { return surname_; }
 
-        const std::string& getFreshMan() const {return freshman_;}
+        const std::string &getFreshMan() const { return freshman_; }
     };
 }
 

@@ -20,7 +20,7 @@ namespace university {
     public:
         Time() {};
 
-        Time(int hour, int minute, int second = 0);
+        explicit Time(int hour, int minute, int second = 0);
 
         Time(const std::string &d);//riceve data in tipo stringa
 

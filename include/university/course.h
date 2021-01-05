@@ -14,12 +14,15 @@
 namespace university {
     class Course {
     protected:
+        std::string name_;
         std::vector<const university::Student *> students_;
         std::vector<const university::Teacher *> teachers_; // di solito ci sono eventuali assistenti collaboratori col prof principale
         std::vector<const university::Lesson *> lessons_;
         int yearOfTheCurrentCourse_;
     public:
-        Course(int year) : yearOfTheCurrentCourse_(year) {}
+        Course(const std::string &name, int year) : name_(name), yearOfTheCurrentCourse_(year) {}
+
+        const std::string &getName() const { return name_; }
 
         int getNumbersOfStudentOfThisCourse() const { return students_.size(); }
 
@@ -47,12 +50,16 @@ namespace university {
 
         void printInfoStudent() const;
 
-        const std::vector<const Lesson *> &getBiggerListOfLessonBetweenTwoListOfLessonOfTheCourse(const std::vector<const Lesson *> &Lesson) const {
-            return ((this->getListOfLessonOfThisCourse().size() > Lesson.size()) ? this->getListOfLessonOfThisCourse() : Lesson);
+        const std::vector<const Lesson *> &
+        getBiggerListOfLessonBetweenTwoListOfLessonOfTheCourse(const std::vector<const Lesson *> &Lesson) const {
+            return ((this->getListOfLessonOfThisCourse().size() > Lesson.size()) ? this->getListOfLessonOfThisCourse()
+                                                                                 : Lesson);
         }
 
-        const std::vector<const Lesson *> &getSmallerListOfLessonBetweenTwoListOfLessonOfTheCourse(const std::vector<const Lesson *> &Lesson) const {
-            return ((this->getListOfLessonOfThisCourse().size() < Lesson.size()) ? this->getListOfLessonOfThisCourse() : Lesson);
+        const std::vector<const Lesson *> &
+        getSmallerListOfLessonBetweenTwoListOfLessonOfTheCourse(const std::vector<const Lesson *> &Lesson) const {
+            return ((this->getListOfLessonOfThisCourse().size() < Lesson.size()) ? this->getListOfLessonOfThisCourse()
+                                                                                 : Lesson);
         }
     };
 }

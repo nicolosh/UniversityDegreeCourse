@@ -26,7 +26,7 @@ namespace university {
     }
 
     std::string Time::formatoBreve() {
-        return std::to_string(hour_) + ":" + std::to_string(minute_) + ":" + std::to_string(second_);
+        return std::to_string(hour_) + ":" + std::to_string(minute_); /* + ":" + std::to_string(second_)*/
     }
 
     bool Time::operator>(const Time &time) {
@@ -51,11 +51,10 @@ namespace university {
     Time Time::operator+(const Time &time) {
         //implemento solo per orari con hours e minutes
         Time res;
-        res.hour_= hour_ + time.hour_;
-        res.minute_= minute_ + time.minute_;
+        res.hour_ = hour_ + time.hour_;
+        res.minute_ = minute_ + time.minute_;
 
-        if(minute_ + time.minute_ >= 60)
-        {
+        if (minute_ + time.minute_ >= 60) {
             res.hour_++;
             res.minute_ = abs(minute_ - time.minute_);
         }
@@ -85,8 +84,7 @@ namespace university {
         {
             if (minute_ > timeB.getMinute())
                 return *this;
-            else
-            {
+            else {
                 if (minute_ == timeB.getMinute() && second_ > timeB.getSecond())
                     return *this;
             }
@@ -101,8 +99,7 @@ namespace university {
         {
             if (minute_ < timeB.getMinute())
                 return *this;
-            else
-            {
+            else {
                 if (minute_ == timeB.getMinute() && second_ < timeB.getSecond())
                     return *this;
             }
