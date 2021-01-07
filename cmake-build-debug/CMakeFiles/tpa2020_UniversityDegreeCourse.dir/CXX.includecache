@@ -22,14 +22,6 @@ iostream
 string
 -
 
-../include/university/display.h
-university/course.h
--
-university/data.h
--
-university/time.h
--
-
 ../include/university/lesson.h
 university/room.h
 -
@@ -60,18 +52,6 @@ iostream
 math.h
 -
 
-/cygdrive/c/Users/nicol/OneDrive/Desktop/C++/tpa2020_UniversityDegreeCourse/include/university/course.h
-university/teacher.h
--
-university/student.h
--
-university/lesson.h
--
-vector
--
-iostream
--
-
 /cygdrive/c/Users/nicol/OneDrive/Desktop/C++/tpa2020_UniversityDegreeCourse/include/university/display.h
 university/course.h
 -
@@ -79,20 +59,6 @@ university/data.h
 -
 university/time.h
 -
-
-/cygdrive/c/Users/nicol/OneDrive/Desktop/C++/tpa2020_UniversityDegreeCourse/main.cpp
-iostream
--
-university/display.h
--
-university/room.h
--
-university/course.h
--
-
-/cygdrive/c/Users/nicol/OneDrive/Desktop/C++/tpa2020_UniversityDegreeCourse/src/course.cpp
-../include/university/course.h
-/cygdrive/c/Users/nicol/OneDrive/Desktop/C++/tpa2020_UniversityDegreeCourse/include/university/course.h
 
 /cygdrive/c/Users/nicol/OneDrive/Desktop/C++/tpa2020_UniversityDegreeCourse/src/display.cpp
 ../include/university/display.h

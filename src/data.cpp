@@ -42,7 +42,7 @@ namespace university {
     }
 
     std::string Data::formatoBreve() {
-        return std::to_string(giorno_) + "/" + std::to_string(mese_) + "/" + std::to_string(anno_);
+        return toString();
     }
 
     bool Data::operator==(const Data &altra) {
@@ -102,5 +102,12 @@ namespace university {
                 return 0;
                 break;
         }
+    }
+
+    std::string Data::toString() const {
+        std::stringstream stream;
+
+        stream << giorno_ << "/" << mese_ << "/" << anno_;
+        return stream.str();
     }
 }

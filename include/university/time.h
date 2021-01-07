@@ -43,6 +43,8 @@ namespace university {
 
         std::string formatoBreve();
 
+        std::string toString() const;
+
         int getHour() const { return hour_; };
 
         int getMinute() const { return minute_; };

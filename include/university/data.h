@@ -6,6 +6,7 @@
 #define TPA2020_UNIVERSITYDEGREECOURSE_DATA_H
 
 #include <string>
+#include <sstream>
 
 namespace university {
     class Data {
@@ -20,6 +21,8 @@ namespace university {
         bool operator==(const Data &altra);
 
         bool operator<(const Data &);
+
+        std::string toString() const;
 
         bool operator>(const Data &);
 

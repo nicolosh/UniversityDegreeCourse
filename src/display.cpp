@@ -1,79 +1,121 @@
 //
-// Created by nicol on 27/12/2020.
+// Created by nicol on 30/12/2020.
 //
 
-#include "../include/shapes/display.h"
+#include "../include/university/display.h"
 
-void shapes::Display::totalArea() const {
-    double sum = 0.0;
-    for (int i = 0; i < shapes_.size(); ++i)
-        if (shapes_[i] != nullptr)
-            sum += shapes_[i]->area();
 
-    std::cout << "Total area of shapes in display: " << sum << std::endl;
-}
-
-void shapes::Display::addShape(const shapes::Shape &shape) {
-    //verifico che NON stia nel display come dimensioni o posizione
-    if ((shape.area() > (width_ * height_)) || (shape.perimeter() > (width_ + height_) * 2) ||
-        (shape.perimeter() <= 0) || (shape.area() <= 0) ||
-        !((shape.getInitialPoint().x_ >= 0) && (shape.getInitialPoint().x_ <= width_)) ||
-        !((shape.getInitialPoint().y_ >= 0) &&
-          (shape.getInitialPoint().y_ <= height_))) // oppure se shape non è lista di tutte le possibili shape 2D
-    {
-        std::cout << "Cannot add this shape " << shape.getName() << std::endl;
-        return;
-    }
-
-    //condizioni che non vanno bene
-    for (int i = 1; i < shapes_.size(); ++i) {
-        if (!shapes_[i - 1]->isPointInsideShape(shape.getInitialPoint())) {
-            std::cout << "Cannot add your shape " << shape.getName() << std::endl;
-            return;
+void university::Display::getCoursesTeachedByTeachers(const std::vector<const Teacher *> &teachers) const {
+    bool found = false;
+    for (int i = 0; i < courses_.size() && !found; ++i) {
+        bool flag = false;
+        for (int j = 0; j < courses_[i]->getNumbersOfTeachersOfThisCourse(); ++j) {
+            if (courses_[i]->getListOfTeachersOfThisCourse()[j]->getFreshMan() == teachers[j]->getFreshMan())
+			{
+                flag = true;
+                found = true; // almeno un corso trovato
+            }
+        }
+        if (flag) {
+            std::cout << "The course of " << courses_[i]->getName() << " is teached by your Teachers: ";
+            courses_[i]->getTeachersOfThisCourse(); // stampo info
         }
     }
-
-    shapes_.push_back(&shape);
+    if (!found)
+        std::cout << "Cannot find courses teached by your teachers ... " << std::endl;
 }
 
-void shapes::Display::removeShape(const shapes::Shape &shape) {
-    for (int i = 0; i < shapes_.size(); ++i) {
-        if (
-                (shapes_[i]->getName() == shape.getName()) &&
-                (shapes_[i]->getInitialPoint().x_ == shape.getInitialPoint().x_) &&
-                (shapes_[i]->getInitialPoint().y_ == shape.getInitialPoint().y_) &&
-                (shapes_[i]->area() == shape.area()) &&
-                (shapes_[i]->perimeter() == shape.perimeter())
-                ) {
-            shapes_[i] = nullptr;
-            return;
+//ipotizzo che si parla di una triennale e quindi ogni professore o lista di professori insegnano 1 corso
+// se così non fosse tolgo !found nel primo ciclo
+
+void university::Display::getCoursesTeachedInRoom(const Room &room) const {
+    bool found = false;
+    for (int i = 0; i < courses_.size(); ++i) {
+        bool flag = false;
+        for (int j = 0; j < courses_[i]->getNumbersOfLessonsOfThisCourse() && !flag; ++j) {
+            if (
+                    (courses_[i]->getListOfLessonOfThisCourse()[j]->getRoomOfThisLesson().getRoomID() ==
+                     room.getRoomID()) &&
+                    (courses_[i]->getListOfLessonOfThisCourse()[j]->getRoomOfThisLesson().getPlacesOfTheRoom() ==
+                     room.getPlacesOfTheRoom())
+                    ) {
+                flag = true;
+                found = true;
+            }
+
+        }
+        if (flag)
+            std::cout << "The course of " << courses_[i]->getName() << " is teached in room " << room.getRoomID() <<
+                      "with number of places to sit equals to " << room.getPlacesOfTheRoom() << std::endl;
+    }
+    if (!found)
+        std::cout << "Cannot find courses teached in your room " << room.getRoomID() << std::endl;
+}
+
+void university::Display::addCourse(const university::Course &course) {
+    courses_.push_back(&course);
+}
+
+void university::Display::displayEverything() const {
+    for (int i = 0; i < courses_.size(); ++i) {
+        std::cout << "Course " << (i+1) << "Info: " << std::endl;
+        courses_[i]->getScolasticYear();
+        courses_[i]->getRoomsAssociatedToTheCourse();
+        courses_[i]->getTeachersOfThisCourse();
+        courses_[i]->printInfoStudent();
+        std::cout << std::endl;
+        getCoursesTeachedByTeachers(courses_[i]->getListOfTeachersOfThisCourse());
+        for (int j = 0; j < courses_[i]->getNumbersOfLessonsOfThisCourse(); ++j) {
+            getCoursesTeachedInRoom(courses_[i]->getListOfLessonOfThisCourse()[j]->getRoomOfThisLesson());
         }
     }
-
-    std::cout << "Cannot find requested shape" << std::endl;
 }
 
-void shapes::Display::updateDisplay() const {
-    for (int i = 0; i < shapes_.size(); ++i) {
-        if (shapes_[i] != nullptr)
-            shapes_[i]->printShape();
-    }
-}
 
-void shapes::Display::refresh() const {
-    for (int i = height_; i >= 0; --i) {
-        for (int j = 0; j < width_; ++j) {
-            bool isFull = false;
-            for (int k = 0; k < shapes_.size() && !isFull; ++k) {
-                if (shapes_[i]->isPointInsideShape(Point(j, i))) {
-                    isFull = true;
+void university::Display::timeOverlap() const {
+    // no sovrapposizioni temporali
+    bool found = false;
+    for (int j = 0; j < courses_.size() - 1; ++j) {
+        std::vector<const Lesson *> lessonJ = courses_[j]->getListOfLessonOfThisCourse();
+        for (int k = j + 1; k < courses_.size(); ++k) {
+            if (courses_[j]->getScolasticYear() == courses_[k]->getScolasticYear()) {
+                std::vector<const Lesson *> lessonK = courses_[k]->getListOfLessonOfThisCourse();
+
+                int massimo = ((lessonJ.size() > lessonK.size()) ? lessonJ.size() : lessonK.size());
+                int minimo = ((lessonJ.size() < lessonK.size()) ? lessonJ.size() : lessonK.size());
+
+                std::vector<const Lesson *> majorList = courses_[j]->getBiggerListOfLessonsBetweenTwoListsOfLessonsOfTheCourse(
+                        lessonK);
+                std::vector<const Lesson *> minorList = courses_[j]->getSmallerListOfLessonsBetweenTwoListsOfLessonsOfTheCourse(
+                        lessonK);
+
+                for (int l = 0; l < massimo; ++l) {
+                    for (int m = 0; m < minimo; ++m) {
+                        if (majorList[l]->getDataOfThisLesson() == minorList[m]->getDataOfThisLesson()) {
+                            Time major = majorList[l]->getInitialTime().getTimeMax(minorList[m]->getInitialTime());
+                            Time minor = majorList[l]->getInitialTime().getTimeMin(minorList[m]->getInitialTime());
+                            if ((major > minor) && major < minor + minorList[m]->getTimeOfThisLesson()) {
+                                found = true;
+
+                                std::cout << "Found timeoverlap for the lessons of the courses of the " <<
+                                          courses_[j]->getScolasticYear() << " scolastic Year: " << std::endl;
+                                std::cout << "Lesson of course of " << courses_[j]->getName() << " and the one of the course "
+                                          << courses_[k]->getName();
+                                std::cout << " respectively with the following data: ";
+                                majorList[l]->getDataOfThisLesson().formatoBreve() + ", " +
+                                majorList[l]->getRoomOfThisLesson().getRoomID() +
+                                "/n" + minorList[m]->getDataOfThisLesson().formatoBreve() + ", " +
+                                minorList[m]->getRoomOfThisLesson().getRoomID()
+                                + "starting respectively at " + majorList[l]->getInitialTime().formatoBreve() +
+                                "and " + minorList[m]->getInitialTime().formatoBreve();
+                                std::cout << std::endl;
+                            }
+                        }
+                    }
                 }
             }
-            if (isFull)
-                std::cout << "*";
-            else
-                std::cout << " ";
         }
-        std::cout << std::endl;
     }
+    if (!found)
+        std::cout << "No timeoverlaps found, everything works clear " << std::endl;
 }

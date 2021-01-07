@@ -2,6 +2,7 @@
 // Created by nicol on 01/01/2021.
 //
 
+#include <sstream>
 #include "../include/university/time.h"
 
 namespace university {
@@ -26,7 +27,14 @@ namespace university {
     }
 
     std::string Time::formatoBreve() {
-        return std::to_string(hour_) + ":" + std::to_string(minute_); /* + ":" + std::to_string(second_)*/
+        return toString();
+    }
+
+    std::string Time::toString() const {
+        std::stringstream stream;
+
+        stream << hour_ << ":" << minute_ << ":" << second_;
+        return stream.str();
     }
 
     bool Time::operator>(const Time &time) {

@@ -51,14 +51,14 @@ namespace university {
         void printInfoStudent() const;
 
         const std::vector<const Lesson *> &
-        getBiggerListOfLessonBetweenTwoListOfLessonOfTheCourse(const std::vector<const Lesson *> &Lesson) const {
-            return ((this->getListOfLessonOfThisCourse().size() > Lesson.size()) ? this->getListOfLessonOfThisCourse()
+        getBiggerListOfLessonsBetweenTwoListsOfLessonsOfTheCourse(const std::vector<const Lesson *> &Lesson) const {
+            return ((getListOfLessonOfThisCourse().size() > Lesson.size()) ? getListOfLessonOfThisCourse()
                                                                                  : Lesson);
         }
 
         const std::vector<const Lesson *> &
-        getSmallerListOfLessonBetweenTwoListOfLessonOfTheCourse(const std::vector<const Lesson *> &Lesson) const {
-            return ((this->getListOfLessonOfThisCourse().size() < Lesson.size()) ? this->getListOfLessonOfThisCourse()
+        getSmallerListOfLessonsBetweenTwoListsOfLessonsOfTheCourse(const std::vector<const Lesson *> &Lesson) const {
+            return ((getListOfLessonOfThisCourse().size() < Lesson.size()) ? getListOfLessonOfThisCourse()
                                                                                  : Lesson);
         }
     };
