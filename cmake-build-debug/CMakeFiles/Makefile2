@@ -64,16 +64,16 @@ RM = /cygdrive/c/Users/nicol/AppData/Local/JetBrains/CLion2020.3/cygwin_cmake/bi
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /cygdrive/c/Users/nicol/OneDrive/Desktop/C++/tpa2020_UniversityDegreeCourse
+CMAKE_SOURCE_DIR = /cygdrive/c/Users/nicol/OneDrive/Desktop/C++/tpa2020_shapeDisplay
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /cygdrive/c/Users/nicol/OneDrive/Desktop/C++/tpa2020_UniversityDegreeCourse/cmake-build-debug
+CMAKE_BINARY_DIR = /cygdrive/c/Users/nicol/OneDrive/Desktop/C++/tpa2020_shapeDisplay/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/tpa2020_UniversityDegreeCourse.dir/all
+all: CMakeFiles/tpa2020_shapeDisplay.dir/all
 
 .PHONY : all
 
@@ -83,36 +83,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/tpa2020_UniversityDegreeCourse.dir/clean
+clean: CMakeFiles/tpa2020_shapeDisplay.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/tpa2020_UniversityDegreeCourse.dir
+# Target rules for target CMakeFiles/tpa2020_shapeDisplay.dir
 
 # All Build rule for target.
-CMakeFiles/tpa2020_UniversityDegreeCourse.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tpa2020_UniversityDegreeCourse.dir/build.make CMakeFiles/tpa2020_UniversityDegreeCourse.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tpa2020_UniversityDegreeCourse.dir/build.make CMakeFiles/tpa2020_UniversityDegreeCourse.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cygdrive/c/Users/nicol/OneDrive/Desktop/C++/tpa2020_UniversityDegreeCourse/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11 "Built target tpa2020_UniversityDegreeCourse"
-.PHONY : CMakeFiles/tpa2020_UniversityDegreeCourse.dir/all
+CMakeFiles/tpa2020_shapeDisplay.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tpa2020_shapeDisplay.dir/build.make CMakeFiles/tpa2020_shapeDisplay.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tpa2020_shapeDisplay.dir/build.make CMakeFiles/tpa2020_shapeDisplay.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cygdrive/c/Users/nicol/OneDrive/Desktop/C++/tpa2020_shapeDisplay/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5 "Built target tpa2020_shapeDisplay"
+.PHONY : CMakeFiles/tpa2020_shapeDisplay.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/tpa2020_UniversityDegreeCourse.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/nicol/OneDrive/Desktop/C++/tpa2020_UniversityDegreeCourse/cmake-build-debug/CMakeFiles 11
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/tpa2020_UniversityDegreeCourse.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/nicol/OneDrive/Desktop/C++/tpa2020_UniversityDegreeCourse/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/tpa2020_UniversityDegreeCourse.dir/rule
+CMakeFiles/tpa2020_shapeDisplay.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/nicol/OneDrive/Desktop/C++/tpa2020_shapeDisplay/cmake-build-debug/CMakeFiles 5
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/tpa2020_shapeDisplay.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/nicol/OneDrive/Desktop/C++/tpa2020_shapeDisplay/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/tpa2020_shapeDisplay.dir/rule
 
 # Convenience name for target.
-tpa2020_UniversityDegreeCourse: CMakeFiles/tpa2020_UniversityDegreeCourse.dir/rule
+tpa2020_shapeDisplay: CMakeFiles/tpa2020_shapeDisplay.dir/rule
 
-.PHONY : tpa2020_UniversityDegreeCourse
+.PHONY : tpa2020_shapeDisplay
 
 # clean rule for target.
-CMakeFiles/tpa2020_UniversityDegreeCourse.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tpa2020_UniversityDegreeCourse.dir/build.make CMakeFiles/tpa2020_UniversityDegreeCourse.dir/clean
-.PHONY : CMakeFiles/tpa2020_UniversityDegreeCourse.dir/clean
+CMakeFiles/tpa2020_shapeDisplay.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tpa2020_shapeDisplay.dir/build.make CMakeFiles/tpa2020_shapeDisplay.dir/clean
+.PHONY : CMakeFiles/tpa2020_shapeDisplay.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

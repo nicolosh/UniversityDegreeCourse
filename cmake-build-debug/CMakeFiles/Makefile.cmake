@@ -125,5 +125,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/tpa2020_UniversityDegreeCourse.dir/DependInfo.cmake"
+  "CMakeFiles/tpa2020_shapeDisplay.dir/DependInfo.cmake"
   )
